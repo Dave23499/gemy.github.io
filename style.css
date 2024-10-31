@@ -1,0 +1,237 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Dancing Script', cursive; /* Romantic handwritten font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #7b2cbf, #4cc9f0); /* Purple to Blue background */
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Soft white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+}
+
+/* Fade Animation */
+.fade {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.message {
+    font-size: 1.8rem;
+    color: #ff99c8; /* Soft pink */
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease-in;
+}
+
+.message:hover {
+    color: #ff5d8f; /* Pink highlight on hover */
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1rem;
+    color: white;
+    background-color: #ff5d8f; /* Bold pink buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #7209b7; /* Purple on hover */
+    transform: scale(1.05);
+}
+
+#response {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #444;
+}
+
+/* Heart Animation */
+#heartContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff5d8f; /* Pink hearts */
+    transform: rotate(45deg);
+    animation: float 5s ease-in infinite;
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff5d8f;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: -10px;
+    top: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(45deg);
+    }
+    100% {
+        transform: translateY(-100vh) rotate(45deg); /* Move heart up */
+    }
+}
+
+/* Confetti Animation */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    overflow: hidden;
+    pointer-events: none; /* Disable interaction */
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: #ff5d8f;
+    animation: fall 5s ease-in-out infinite;
+    transform: rotate(45deg);
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Heart Transition */
+.heart-large {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: #ff5d8f;
+    transform: translate(-50%, -50%) rotate(45deg);
+    opacity: 0;
+    transition: width 1s ease, height 1s ease, opacity 1s ease;
+}
+
+.heart-large::before, .heart-large::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff5d8f;
+    border-radius: 50%;
+}
+
+.heart-large::before {
+    top: -50%;
+    left: 0;
+}
+
+.heart-large::after {
+    top: 0;
+    left: -50%;
+}
+
+.heart-show {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+}
+
+/* Initially hidden */
+.hidden {
+    opacity: 0;
+    transition: opacity 8s ease-in-out; /* Slower fade-in (8 seconds) */
+    width: 200px; /* Smaller image width */
+    height: auto; /* Keep aspect ratio */
+    margin-top: 20px;
+}
+
+#logo {
+    position: fixed;
+    bottom: 10px; /* Adjusts distance from bottom */
+    left: 20px;  /* Adjusts distance from right */
+    width: 100px;  /* Adjust the size of the logo */
+    height: auto; /* Keep aspect ratio */
+    opacity: 0.7; /* Make it slightly transparent */
+    transition: opacity 0.3s ease;
+}
+
+#logo:hover {
+    opacity: 1; /* Full opacity when hovered */
+}
+
+/* Fade-in class */
+.show {
+    opacity: 1;
+    width: 200px; /* Ensure the width remains the same after fade-in */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+    .message {
+        font-size: 1.2rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
